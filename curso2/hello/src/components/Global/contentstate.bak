@@ -1,0 +1,85 @@
+import React, { Component } from 'react';
+
+
+import './css/Content.css';
+
+class Content extends Component {
+
+	constructor(){
+		super();
+
+		this.state ={
+			count:0,
+			number1:0,
+			number2:0,
+			result:0
+		};
+
+		this.handleCountClick= this.handleCountClick.bind(this);
+		this.handleResulClick= this.handleResulClick.bind(this);
+		this.handleInputChange= this.handleInputChange.bind(this);
+	}
+
+	
+
+	handleCountClick(e){
+		if (e.target.id==='add') {
+			this.setState({
+				count: this.state.count+1
+			});
+		}else if (e.target.id==='subt' && this.state.count>0) {
+			this.setState({
+				count: this.state.count-1
+			});
+		}else {
+			this.setState({
+				count:0
+			});
+		}
+	}
+
+	handleResulClick(e){
+		console.log('sdsd');
+		this.setState({
+			result: this.state.number1 +this.state.number2
+		});
+	}
+
+	handleInputChange(e){
+		console.log('pasa');
+		if (e.target.id==='number1') {
+			this.setState({
+				number1: Number(e.target.value)
+			});
+		}else {
+			this.setState({
+				number2:Number(e.target.value)
+			});
+		}
+	}
+
+  render() {
+    return (
+      <div className="Content">
+       <div>
+       		<p>lorem</p><br/>
+       		<p>couter</p>
+       			<h2>{ this.state.count}</h2>
+       			<button id="add" onClick={this.handleCountClick} >+</button>
+       			<button id="subt" onClick={this.handleCountClick} >+</button>
+       			<button id="reset" onClick={this.handleCountClick}>+</button>
+       		<p>calculadora</p>
+       		<div>
+       			<input type="number" id="number1" value={this.state.number1} onChange={this.handleInputChange}/>
+       			<input type="number" id="number2" value={this.state.number2} onChange={this.handleInputChange}/>
+       			
+       			<button id="result" onClick={this.handleResulClick}>result</button>
+       			<p>{this.state.result}</p>
+       		</div>
+       </div>
+      </div>
+    );
+  }
+}
+
+export default Content;
